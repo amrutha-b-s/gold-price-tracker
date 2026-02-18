@@ -6,7 +6,7 @@ type Country = {
   name: string;
   currency: string;
   symbol: string;
-  rateToUSD: number; // 1 USD = ? currency
+  rateToUSD: number;
   taxPercent: number;
   flag: string;
 };
@@ -41,13 +41,9 @@ export default function RankingPage() {
     async function fetchGold() {
       const res = await fetch("/api/price");
       const data = await res.json();
-
-      const ouncePrice = data.gold.current;
-      const gramPrice = ouncePrice / 31.1035;
-
+      const gramPrice = data.gold.current / 31.1035;
       setGoldPerGramUSD(gramPrice);
     }
-
     fetchGold();
   }, []);
 
@@ -58,9 +54,7 @@ export default function RankingPage() {
   const calculated = countries.map((c) => {
     const localPrice = goldPerGramUSD * c.rateToUSD;
     const localWithTax = localPrice + (localPrice * c.taxPercent) / 100;
-
-    const inrBase = goldPerGramUSD * INR_RATE;
-    const inrWithTax = inrBase + (inrBase * c.taxPercent) / 100;
+    const inrWithTax = (goldPerGramUSD * INR_RATE) * (1 + c.taxPercent / 100);
 
     return {
       ...c,
@@ -69,98 +63,63 @@ export default function RankingPage() {
     };
   });
 
-  const sorted = [...calculated].sort(
-    (a, b) => a.finalINR - b.finalINR
-  );
+  const sorted = [...calculated].sort((a, b) => a.finalINR - b.finalINR);
 
   const cheapest = sorted[0];
   const highest = sorted[sorted.length - 1];
 
   return (
-    <div style={{ padding: "60px", textAlign: "center", fontFamily: "Arial, sans-serif" }}>
-      <h1 style={{ marginBottom: "50px" }}>
+    <div style={{ padding: "80px", textAlign: "center", color: "white" }}>
+      <h1 className="gold-text" style={{ marginBottom: "60px" }}>
         🏆 Gold Price Ranking (1 Gram)
       </h1>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "60px",
-          flexWrap: "wrap",
-        }}
-      >
-        {/* Cheapest Card */}
-        <div
-          style={{
-            width: "450px",
-            border: "1px solid #eee",
-            borderRadius: "20px",
-            padding: "30px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            boxShadow: "0 15px 30px rgba(0,0,0,0.05)",
-          }}
-        >
-          <div style={{ textAlign: "left" }}>
-            <p style={{ color: "green", fontWeight: 600 }}>
-              🟢 Cheapest Country
-            </p>
+      {/* CHEAPEST */}
+      <div className="luxury-card big-card">
+        <h2 style={{ color: "#4CAF50", marginBottom: "30px" }}>
+          Cheapest Country
+        </h2>
 
-            <h3 style={{ marginTop: "20px" }}>
-              ₹{cheapest.finalINR.toFixed(2)}
-            </h3>
-
-            <p style={{ marginTop: "10px" }}>
-              {cheapest.symbol}
-              {cheapest.finalLocal.toFixed(2)} {cheapest.currency}
-            </p>
-          </div>
-
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "80px" }}>{cheapest.flag}</div>
-            <p style={{ marginTop: "10px", fontWeight: 600 }}>
-              {cheapest.name}
-            </p>
-          </div>
+        <div style={{ position: "relative", display: "inline-block" }}>
+          <span className="flag-large">{cheapest.flag}</span>
+          <span className="crown-on-flag">👑</span>
         </div>
 
-        {/* Highest Card */}
-        <div
-          style={{
-            width: "450px",
-            border: "1px solid #eee",
-            borderRadius: "20px",
-            padding: "30px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            boxShadow: "0 15px 30px rgba(0,0,0,0.05)",
-          }}
-        >
-          <div style={{ textAlign: "left" }}>
-            <p style={{ color: "red", fontWeight: 600 }}>
-              🔴 Most Expensive Country
-            </p>
+        <h3 style={{ marginTop: "20px" }}>
+          ₹{cheapest.finalINR.toFixed(2)}
+        </h3>
 
-            <h3 style={{ marginTop: "20px" }}>
-              ₹{highest.finalINR.toFixed(2)}
-            </h3>
+        <p>
+          {cheapest.symbol}
+          {cheapest.finalLocal.toFixed(2)} {cheapest.currency}
+        </p>
 
-            <p style={{ marginTop: "10px" }}>
-              {highest.symbol}
-              {highest.finalLocal.toFixed(2)} {highest.currency}
-            </p>
-          </div>
+        <h3 style={{ marginTop: "15px" }}>{cheapest.name}</h3>
+      </div>
 
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "80px" }}>{highest.flag}</div>
-            <p style={{ marginTop: "10px", fontWeight: 600 }}>
-              {highest.name}
-            </p>
-          </div>
+      {/* SPACE */}
+      <div style={{ height: "50px" }} />
+
+      {/* EXPENSIVE */}
+      <div className="luxury-card big-card">
+        <h2 style={{ color: "#ff4d4d", marginBottom: "30px" }}>
+          Most Expensive Country
+        </h2>
+
+        <div>
+          <span className="flag-large">{highest.flag}</span>
         </div>
+
+        <h3 style={{ marginTop: "20px" }}>
+          ₹{highest.finalINR.toFixed(2)}
+        </h3>
+
+        <p>
+          {highest.symbol}
+          {highest.finalLocal.toFixed(2)} {highest.currency}
+        </p>
+
+        <h3 style={{ marginTop: "15px" }}>{highest.name}</h3>
       </div>
     </div>
   );

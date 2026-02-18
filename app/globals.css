@@ -1,26 +1,113 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* BODY BACKGROUND */
+html, body {
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  color: white;
+  background: url("/temple-bg.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Dark overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+/* GOLD TITLE */
+.gold-text {
+  background: linear-gradient(45deg, #ffd700, #d4af37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+/* GLASS CARD */
+.luxury-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   BELL STYLING
+========================= */
+
+.bell-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.bell-button {
+  font-size: 60px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  z-index: 2;
+  position: relative;
+}
+
+/* Hover glow */
+.bell-button:hover {
+  filter: drop-shadow(0 0 15px gold);
+}
+
+/* Ringing animation */
+.bell-button.ringing {
+  animation: shakeBell 0.4s infinite;
+  filter: drop-shadow(0 0 25px gold);
+}
+
+/* Shake */
+@keyframes shakeBell {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Ripple */
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 215, 0, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.bell-wrapper.active .ripple {
+  animation: rippleEffect 1s ease-out infinite;
+}
+
+@keyframes rippleEffect {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  100% {
+    width: 180px;
+    height: 180px;
+    opacity: 0;
+  }
 }

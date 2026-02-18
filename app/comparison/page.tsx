@@ -29,10 +29,6 @@ const countries = [
   { name: "South Africa", code: "+27", currency: "ZAR", symbol: "R", rate: 18.5, tax: 0.15, flag: "🇿🇦" },
 ];
 
-/* ===============================
-   COMPONENT
-================================= */
-
 export default function ComparisonPage() {
   const [goldPerGramUSD, setGoldPerGramUSD] = useState<number | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<any>(null);
@@ -43,21 +39,15 @@ export default function ComparisonPage() {
     async function fetchGoldPrice() {
       const res = await fetch("https://api.gold-api.com/price/XAU");
       const data = await res.json();
-
       const gram = data.price / 31.1035;
       setGoldPerGramUSD(gram);
     }
-
     fetchGoldPrice();
   }, []);
 
   const filteredCountries = countries.filter((c) =>
     c.name.toLowerCase().includes(search.toLowerCase())
   );
-
-  /* ===============================
-     CALCULATIONS
-  ================================= */
 
   let priceLocal = 0;
   let priceWithTaxLocal = 0;
@@ -67,41 +57,28 @@ export default function ComparisonPage() {
   if (goldPerGramUSD && selectedCountry) {
     priceLocal = goldPerGramUSD * selectedCountry.rate;
     priceWithTaxLocal = priceLocal * (1 + selectedCountry.tax);
-
     priceINR = goldPerGramUSD * 83;
     priceWithTaxINR = priceINR * (1 + selectedCountry.tax);
   }
 
   return (
-    <div style={{ padding: "40px", maxWidth: "700px" }}>
-      <h1>🌍 Gold Comparison (1 Gram)</h1>
+    <div style={{ maxWidth: "800px", margin: "auto" }}>
+      <h1 className="gold-text" style={{ marginBottom: "30px" }}>
+        🌍 Gold Comparison (1 Gram)
+      </h1>
 
-      {/* SEARCH DROPDOWN */}
-      <div style={{ position: "relative", marginBottom: "20px" }}>
+      {/* SEARCH */}
+      <div style={{ position: "relative", marginBottom: "30px" }}>
         <div
-          style={{
-            border: "1px solid #ccc",
-            padding: "10px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            background: "#fff",
-          }}
+          className="glass-card"
+          style={{ cursor: "pointer" }}
           onClick={() => setOpen(!open)}
         >
           🔍 {selectedCountry ? selectedCountry.name : "Search Country"}
         </div>
 
         {open && (
-          <div
-            style={{
-              border: "1px solid #ccc",
-              borderRadius: "8px",
-              marginTop: "5px",
-              background: "#fff",
-              maxHeight: "200px",
-              overflowY: "auto",
-            }}
-          >
+          <div className="glass-card" style={{ marginTop: "10px" }}>
             <input
               type="text"
               placeholder="Type country name..."
@@ -109,9 +86,11 @@ export default function ComparisonPage() {
               onChange={(e) => setSearch(e.target.value)}
               style={{
                 width: "100%",
-                padding: "8px",
+                padding: "10px",
+                background: "transparent",
                 border: "none",
-                borderBottom: "1px solid #eee",
+                color: "white",
+                borderBottom: "1px solid rgba(255,215,0,0.3)",
               }}
             />
 
@@ -135,22 +114,15 @@ export default function ComparisonPage() {
         )}
       </div>
 
-      {/* RESULT CARD */}
+      {/* RESULT */}
       {selectedCountry && goldPerGramUSD && (
-        <div
-          style={{
-            border: "1px solid #ddd",
-            padding: "20px",
-            borderRadius: "12px",
-            background: "#fafafa",
-          }}
-        >
-          <h2>
+        <div className="glass-card">
+          <h2 style={{ marginBottom: "20px" }}>
             {selectedCountry.flag} {selectedCountry.name}
           </h2>
 
           <p>
-            💰 Price (No Tax):{" "}
+            💰 No Tax:{" "}
             <strong>
               {selectedCountry.symbol}
               {priceLocal.toFixed(2)} {selectedCountry.currency}
@@ -158,17 +130,17 @@ export default function ComparisonPage() {
           </p>
 
           <p>
-            🧾 Price (With Tax):{" "}
+            🧾 With Tax:{" "}
             <strong>
               {selectedCountry.symbol}
               {priceWithTaxLocal.toFixed(2)} {selectedCountry.currency}
             </strong>
           </p>
 
-          <hr style={{ margin: "20px 0" }} />
+          <hr style={{ margin: "20px 0", borderColor: "rgba(255,215,0,0.3)" }} />
 
           <p>
-            🇮🇳 Converted to INR (No Tax):{" "}
+            🇮🇳 INR (No Tax):{" "}
             <strong>₹{priceINR.toFixed(2)}</strong>
           </p>
 

@@ -50,37 +50,49 @@ export default function PredictionPage() {
     fetchGold();
   }, []);
 
-  if (!data.length) return <p style={{ padding: 40 }}>Loading chart...</p>;
+  if (!data.length)
+    return <p style={{ padding: 40 }}>Loading chart...</p>;
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1 style={{ textAlign: "center" }}>
+    <div style={{ maxWidth: "1000px", margin: "auto" }}>
+      <h1
+        className="gold-text"
+        style={{ textAlign: "center", marginBottom: "40px" }}
+      >
         📊 7-Day Gold Price Forecast (INR)
       </h1>
 
-      <div
-        style={{
-          maxWidth: "800px",
-          margin: "40px auto",
-          padding: "30px",
-          borderRadius: "20px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-          background: "white",
-        }}
-      >
-        <h3>Current Price: ₹{currentPrice.toFixed(2)}</h3>
+      <div className="glass-card">
+        <h3 style={{ marginBottom: "20px" }}>
+          Current Price: ₹{currentPrice.toFixed(2)}
+        </h3>
 
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="day" />
-            <YAxis />
-            <Tooltip />
+            <CartesianGrid stroke="rgba(255,215,0,0.2)" />
+            <XAxis
+              dataKey="day"
+              stroke="#d4af37"
+              tick={{ fill: "#f5d27a" }}
+            />
+            <YAxis
+              stroke="#d4af37"
+              tick={{ fill: "#f5d27a" }}
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "#1a1a1a",
+                border: "1px solid #d4af37",
+                borderRadius: "10px",
+                color: "white",
+              }}
+            />
             <Line
               type="monotone"
               dataKey="price"
               stroke="#d4af37"
               strokeWidth={3}
+              dot={{ fill: "#f5d27a" }}
             />
           </LineChart>
         </ResponsiveContainer>
