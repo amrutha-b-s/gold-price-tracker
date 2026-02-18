@@ -69,30 +69,37 @@ export default function PredictionPage() {
 
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={data}>
-            <CartesianGrid stroke="rgba(255,215,0,0.2)" />
+            {/* WHITE GRID */}
+            <CartesianGrid stroke="rgba(255,255,255,0.2)" />
+
+            {/* WHITE AXIS */}
             <XAxis
               dataKey="day"
-              stroke="#d4af37"
-              tick={{ fill: "#f5d27a" }}
+              stroke="#ffffff"
+              tick={{ fill: "#ffffff" }}
             />
             <YAxis
-              stroke="#d4af37"
-              tick={{ fill: "#f5d27a" }}
+              stroke="#ffffff"
+              tick={{ fill: "#ffffff" }}
             />
+
+            {/* WHITE TOOLTIP BORDER */}
             <Tooltip
               contentStyle={{
                 backgroundColor: "#1a1a1a",
-                border: "1px solid #d4af37",
+                border: "1px solid #ffffff",
                 borderRadius: "10px",
                 color: "white",
               }}
             />
+
+            {/* WHITE LINE */}
             <Line
               type="monotone"
               dataKey="price"
-              stroke="#d4af37"
+              stroke="#ffffff"
               strokeWidth={3}
-              dot={{ fill: "#f5d27a" }}
+              dot={{ fill: "#ffffff" }}
             />
           </LineChart>
         </ResponsiveContainer>
@@ -100,3 +107,4 @@ export default function PredictionPage() {
     </div>
   );
 }
+``

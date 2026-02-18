@@ -75,14 +75,12 @@ export default function RankingPage() {
       </h1>
 
       {/* CHEAPEST */}
-      <div className="luxury-card big-card">
-        <h2 style={{ color: "#4CAF50", marginBottom: "30px" }}>
-          Cheapest Country
-        </h2>
+      <div className="luxury-card">
+        <h2 style={{ color: "#4CAF50" }}>Cheapest Country</h2>
 
-        <div style={{ position: "relative", display: "inline-block" }}>
-          <span className="flag-large">{cheapest.flag}</span>
-          <span className="crown-on-flag">👑</span>
+        <div className="flag-wrapper">
+          <span className="big-flag">{cheapest.flag}</span>
+          <span className="corner-crown">👑</span>
         </div>
 
         <h3 style={{ marginTop: "20px" }}>
@@ -97,17 +95,14 @@ export default function RankingPage() {
         <h3 style={{ marginTop: "15px" }}>{cheapest.name}</h3>
       </div>
 
-      {/* SPACE */}
-      <div style={{ height: "50px" }} />
+      <div style={{ height: "60px" }} />
 
       {/* EXPENSIVE */}
-      <div className="luxury-card big-card">
-        <h2 style={{ color: "#ff4d4d", marginBottom: "30px" }}>
-          Most Expensive Country
-        </h2>
+      <div className="luxury-card">
+        <h2 style={{ color: "#ff4d4d" }}>Most Expensive Country</h2>
 
-        <div>
-          <span className="flag-large">{highest.flag}</span>
+        <div className="flag-wrapper">
+          <span className="big-flag">{highest.flag}</span>
         </div>
 
         <h3 style={{ marginTop: "20px" }}>

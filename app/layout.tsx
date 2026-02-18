@@ -1,9 +1,5 @@
 import "./globals.css";
-
-export const metadata = {
-  title: "Global Gold Price Tracker",
-  description: "Luxury Gold Metal Dashboard",
-};
+import Link from "next/link";
 
 export default function RootLayout({
   children,
@@ -11,10 +7,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html>
       <body>
-        {/* Golden Particle Background */}
-        <div className="gold-particles"></div>
+
+        <nav className="navbar">
+          <div className="gold-text">🪙 Gold Tracker</div>
+
+          <div className="nav-links">
+            <Link href="/">Home</Link>
+            <Link href="/comparison">Comparison</Link>
+            <Link href="/ranking">Ranking</Link>
+            <Link href="/prediction">Prediction</Link>
+          </div>
+        </nav>
 
         {children}
       </body>

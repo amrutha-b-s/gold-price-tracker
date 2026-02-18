@@ -78,7 +78,7 @@ export default function Home() {
           <button
             onClick={playBell}
             disabled={isPlaying}
-            className={`bell-button ${isPlaying ? "ringing" : ""}`}
+            className={`bell-button big-bell ${isPlaying ? "ringing" : ""}`}
           >
             🔔
           </button>
