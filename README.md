@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🪙 Gold Price Tracker
 
-## Getting Started
+🚀 Live Website:
+👉 https://gold-price-tracker-mu.vercel.app/
 
-First, run the development server:
+⸻
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+📌 About The Project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Gold Price Tracker is a real-time metal price dashboard built using Next.js and deployed on Vercel.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+It shows:
+	•	🌍 Country-wise gold price comparison
+	•	🏆 Cheapest & most expensive country ranking
+	•	📊 7-day gold price prediction (visual chart)
+	•	💱 INR conversion focus
+	•	🧾 Tax calculation per country
+	•	🔔 Temple bell UI interaction
+	•	✨ Luxury glass UI with Indian theme
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+⸻
 
-## Learn More
+⚙️ Tech Stack
+	•	Next.js (App Router)
+	•	TypeScript
+	•	Vercel (Deployment)
+	•	Google Search Console (SEO)
+	•	Recharts (Prediction Chart)
+	•	Gold API
 
-To learn more about Next.js, take a look at the following resources:
+⸻
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🌍 Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1️⃣ Live Metal Price Dashboard
+	•	Gold, Silver, Platinum
+	•	Weekly / Monthly / Yearly change
+	•	USD to INR conversion
 
-## Deploy on Vercel
+2️⃣ Country Comparison
+	•	20 Major Countries
+	•	Phone code
+	•	Local currency
+	•	Tax calculation
+	•	INR conversion
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3️⃣ Global Ranking
+	•	Cheapest country
+	•	Most expensive country
+	•	Crown highlight for cheapest
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4️⃣ 7-Day Prediction
+	•	Dynamic chart
+	•	Simulated forecast
+	•	INR-based graph
+
+⸻
+
+🔎 SEO Setup
+	•	Google Search Console verified
+	•	Sitemap added
+	•	HTTPS secured
+	•	Production deployment on Vercel
