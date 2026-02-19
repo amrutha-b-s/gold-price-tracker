@@ -8,30 +8,30 @@ type Country = {
   symbol: string;
   rateToUSD: number;
   taxPercent: number;
-  flag: string;
+  flag: string; // ISO code now
 };
 
 const countries: Country[] = [
-  { name: "Hong Kong", currency: "HKD", symbol: "HK$", rateToUSD: 7.8, taxPercent: 0, flag: "🇭🇰" },
-  { name: "Singapore", currency: "SGD", symbol: "S$", rateToUSD: 1.35, taxPercent: 0, flag: "🇸🇬" },
-  { name: "Switzerland", currency: "CHF", symbol: "CHF", rateToUSD: 0.9, taxPercent: 0, flag: "🇨🇭" },
-  { name: "UAE", currency: "AED", symbol: "د.إ", rateToUSD: 3.67, taxPercent: 5, flag: "🇦🇪" },
-  { name: "Saudi Arabia", currency: "SAR", symbol: "﷼", rateToUSD: 3.75, taxPercent: 5, flag: "🇸🇦" },
-  { name: "USA", currency: "USD", symbol: "$", rateToUSD: 1, taxPercent: 5, flag: "🇺🇸" },
-  { name: "Canada", currency: "CAD", symbol: "C$", rateToUSD: 1.35, taxPercent: 0, flag: "🇨🇦" },
-  { name: "Australia", currency: "AUD", symbol: "A$", rateToUSD: 1.52, taxPercent: 0, flag: "🇦🇺" },
-  { name: "Japan", currency: "JPY", symbol: "¥", rateToUSD: 150, taxPercent: 10, flag: "🇯🇵" },
-  { name: "Malaysia", currency: "MYR", symbol: "RM", rateToUSD: 4.7, taxPercent: 6, flag: "🇲🇾" },
-  { name: "South Korea", currency: "KRW", symbol: "₩", rateToUSD: 1300, taxPercent: 10, flag: "🇰🇷" },
-  { name: "Thailand", currency: "THB", symbol: "฿", rateToUSD: 35, taxPercent: 7, flag: "🇹🇭" },
-  { name: "South Africa", currency: "ZAR", symbol: "R", rateToUSD: 18, taxPercent: 15, flag: "🇿🇦" },
-  { name: "United Kingdom", currency: "GBP", symbol: "£", rateToUSD: 0.79, taxPercent: 20, flag: "🇬🇧" },
-  { name: "Germany", currency: "EUR", symbol: "€", rateToUSD: 0.92, taxPercent: 19, flag: "🇩🇪" },
-  { name: "France", currency: "EUR", symbol: "€", rateToUSD: 0.92, taxPercent: 20, flag: "🇫🇷" },
-  { name: "Italy", currency: "EUR", symbol: "€", rateToUSD: 0.92, taxPercent: 22, flag: "🇮🇹" },
-  { name: "Brazil", currency: "BRL", symbol: "R$", rateToUSD: 5, taxPercent: 18, flag: "🇧🇷" },
-  { name: "China", currency: "CNY", symbol: "¥", rateToUSD: 7.2, taxPercent: 13, flag: "🇨🇳" },
-  { name: "India", currency: "INR", symbol: "₹", rateToUSD: 83, taxPercent: 18, flag: "🇮🇳" },
+  { name: "Hong Kong", currency: "HKD", symbol: "HK$", rateToUSD: 7.8, taxPercent: 0, flag: "hk" },
+  { name: "Singapore", currency: "SGD", symbol: "S$", rateToUSD: 1.35, taxPercent: 0, flag: "sg" },
+  { name: "Switzerland", currency: "CHF", symbol: "CHF", rateToUSD: 0.9, taxPercent: 0, flag: "ch" },
+  { name: "UAE", currency: "AED", symbol: "د.إ", rateToUSD: 3.67, taxPercent: 5, flag: "ae" },
+  { name: "Saudi Arabia", currency: "SAR", symbol: "﷼", rateToUSD: 3.75, taxPercent: 5, flag: "sa" },
+  { name: "USA", currency: "USD", symbol: "$", rateToUSD: 1, taxPercent: 5, flag: "us" },
+  { name: "Canada", currency: "CAD", symbol: "C$", rateToUSD: 1.35, taxPercent: 0, flag: "ca" },
+  { name: "Australia", currency: "AUD", symbol: "A$", rateToUSD: 1.52, taxPercent: 0, flag: "au" },
+  { name: "Japan", currency: "JPY", symbol: "¥", rateToUSD: 150, taxPercent: 10, flag: "jp" },
+  { name: "Malaysia", currency: "MYR", symbol: "RM", rateToUSD: 4.7, taxPercent: 6, flag: "my" },
+  { name: "South Korea", currency: "KRW", symbol: "₩", rateToUSD: 1300, taxPercent: 10, flag: "kr" },
+  { name: "Thailand", currency: "THB", symbol: "฿", rateToUSD: 35, taxPercent: 7, flag: "th" },
+  { name: "South Africa", currency: "ZAR", symbol: "R", rateToUSD: 18, taxPercent: 15, flag: "za" },
+  { name: "United Kingdom", currency: "GBP", symbol: "£", rateToUSD: 0.79, taxPercent: 20, flag: "gb" },
+  { name: "Germany", currency: "EUR", symbol: "€", rateToUSD: 0.92, taxPercent: 19, flag: "de" },
+  { name: "France", currency: "EUR", symbol: "€", rateToUSD: 0.92, taxPercent: 20, flag: "fr" },
+  { name: "Italy", currency: "EUR", symbol: "€", rateToUSD: 0.92, taxPercent: 22, flag: "it" },
+  { name: "Brazil", currency: "BRL", symbol: "R$", rateToUSD: 5, taxPercent: 18, flag: "br" },
+  { name: "China", currency: "CNY", symbol: "¥", rateToUSD: 7.2, taxPercent: 13, flag: "cn" },
+  { name: "India", currency: "INR", symbol: "₹", rateToUSD: 83, taxPercent: 18, flag: "in" },
 ];
 
 export default function RankingPage() {
@@ -79,7 +79,11 @@ export default function RankingPage() {
         <h2 style={{ color: "#4CAF50" }}>Cheapest Country</h2>
 
         <div className="flag-wrapper">
-          <span className="big-flag">{cheapest.flag}</span>
+          <img
+            src={`https://flagcdn.com/w160/${cheapest.flag}.png`}
+            alt={cheapest.name}
+            className="big-flag"
+          />
           <span className="corner-crown">👑</span>
         </div>
 
@@ -102,7 +106,11 @@ export default function RankingPage() {
         <h2 style={{ color: "#ff4d4d" }}>Most Expensive Country</h2>
 
         <div className="flag-wrapper">
-          <span className="big-flag">{highest.flag}</span>
+          <img
+            src={`https://flagcdn.com/w160/${highest.flag}.png`}
+            alt={highest.name}
+            className="big-flag"
+          />
         </div>
 
         <h3 style={{ marginTop: "20px" }}>

@@ -70,8 +70,8 @@ html, body {
 }
 
 .bell-button {
-  font-size: 120px;   /* 🔥 BIG BELL */
-  background: transparent;   /* remove white box */
+  font-size: 120px;
+  background: transparent;
   border: none;
   outline: none;
   padding: 0;
@@ -90,7 +90,7 @@ html, body {
   100% { transform: translateY(0px); }
 }
 
-/* ================= BIG FLAG (EMOJI) ================= */
+/* ================= BIG FLAG (IMAGE FIXED) ================= */
 
 .flag-wrapper {
   position: relative;
@@ -98,18 +98,29 @@ html, body {
   margin-top: 20px;
 }
 
+/* 🔥 IMPORTANT: Now controlling image size instead of font-size */
 .big-flag {
-  font-size: 100px;
-  display: inline-block;
+  width: 160px;     /* You can increase to 180px if you want bigger */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  display: block;
+}
+
+/* Small flags for dropdown (if used) */
+.small-flag {
+  width: 28px;
+  height: auto;
+  border-radius: 4px;
 }
 
 /* ================= CROWN TOP LEFT ================= */
 
 .corner-crown {
   position: absolute;
-  top: -25px;
-  left: -25px;
-  font-size: 45px;
+  top: -30px;
+  left: -30px;
+  font-size: 55px;
   transform: rotate(-45deg);
 }
 
